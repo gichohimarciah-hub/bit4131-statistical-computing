@@ -1,13 +1,11 @@
 # Pushing the project to GitHub
 
-The local folder is prepared as a Git repository. No GitHub repository is currently connected to this task, so there is no remote to push to yet. Create an empty repository on GitHub (do not initialize it with a README, license, or .gitignore), then from this folder run:
+The local repository is connected to `https://github.com/gichohimarciah-hub/bit4131-statistical-computing.git` and has an initial commit on `main`. The push was not completed because this computer has no GitHub credentials available to the command-line Git client.
 
-```sh
-git remote add origin https://github.com/OWNER/REPOSITORY.git
-git add .
-git commit -m "Add BIT 4131 statistical computing project"
-git branch -M main
-git push -u origin main
+After signing in to GitHub through Git Credential Manager, open PowerShell and run:
+
+```powershell
+git -C "C:\Users\hp\Documents\Codex\2026-11-27\i-x20\outputs\bit4131-statistical-computing" push -u origin main
 ```
 
-Replace `OWNER/REPOSITORY` with the real account and repository. GitHub CLI users may instead authenticate with `gh auth login` and push using their configured credential helper. Never put a password or personal access token in the repository or command history. Once pushed, add the repository URL to `PRESENTATION_OUTLINE.md` and share it during the presentation as requested in the brief.
+If Git prompts you, complete the normal GitHub sign-in in the browser. Do not paste a password or personal access token into the repository or a command. After the push succeeds, the repository page will show the project files; share that URL during the presentation as requested in the brief.
