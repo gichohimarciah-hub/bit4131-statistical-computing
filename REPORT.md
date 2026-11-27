@@ -45,91 +45,91 @@ The results below came from the Python script with random seed 4131. The complet
 
 ### 1. Measures of centre and spread
 
-The mean is the total of the values divided by the number of values. The median is the middle value after sorting. The range is the maximum minus the minimum. The interquartile range is \(Q_3-Q_1\); it covers the middle half of the data. We calculate these values for scores and draw a histogram and boxplot.
+The mean is the total of the values divided by the number of values. The median is the middle value after sorting. The range is the maximum minus the minimum. The interquartile range is \(Q_3-Q_1\); it covers the middle half of the data. I calculate these values for scores and draw a histogram and boxplot.
 
 ### 2. Probability
 
-For events A and B, conditional probability is \(P(A\mid B)=P(A\cap B)/P(B)\), when \(P(B)>0\). We calculate pass rates and the share of Workshop rows that passed. We also simulate two coin flips. The simulated chance of two heads should be close to 0.25, but it can vary a little.
+For events A and B, conditional probability is \(P(A\mid B)=P(A\cap B)/P(B)\), when \(P(B)>0\). I calculate pass rates and the share of Workshop rows that passed. I also simulate two coin flips. The simulated chance of two heads should be close to 0.25, but it can vary a little.
 
 ### 3. Probability distributions
 
-For a binomial variable, \(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\). We use it to find the chance of exactly 6 successes out of 10 when \(p=0.5\), and the chance of 6 or fewer. We also calculate a normal-distribution probability between 60 and 80 for a mean of 70 and standard deviation of 10. The fitted normal curve on the score chart is a guide; it does not prove the scores are normally distributed.
+For a binomial variable, \(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\). I use it to find the chance of exactly 6 successes out of 10 when \(p=0.5\), and the chance of 6 or fewer. I also calculate a normal-distribution probability between 60 and 80 for a mean of 70 and standard deviation of 10. The fitted normal curve on the score chart is a guide; it does not prove the scores are normally distributed.
 
 ### 4. Sampling distributions and the Central Limit Theorem
 
-A sample mean changes from sample to sample. Its standard error is about \(\sigma/\sqrt{n}\). We take 2,000 samples of 40 values from a simulated population and plot their means. The sample means form a roughly bell-shaped distribution, and their spread is close to the standard error formula.
+A sample mean changes from sample to sample. Its standard error is about \(\sigma/\sqrt{n}\). I take 2,000 samples of 40 values from a simulated population and plot their means. The sample means form a roughly bell-shaped distribution, and their spread is close to the standard error formula.
 
 ### 5. Confidence intervals
 
-For the mean, the t interval is \(\bar{x}\pm t^*s/\sqrt{n}\). We use a 95% interval for the generated scores. The interval gives a range of reasonable values for the mean under the model assumptions. It is not a statement that there is a 95% chance this one interval contains a fixed mean.
+For the mean, the t interval is \(\bar{x}\pm t^*s/\sqrt{n}\). I use a 95% interval for the generated scores. The interval gives a range of reasonable values for the mean under the model assumptions. It is not a statement that there is a 95% chance this one interval contains a fixed mean.
 
 ### 6. Hypothesis testing
 
-Welch's two-sample t-test compares two means without assuming their variances are equal. The null hypothesis says the means are equal. The alternative says they differ. The script reports the group means, t statistic, and p-value. The p-value is compared with 0.05. The result only describes our generated data.
+Welch's two-sample t-test compares two means without assuming their variances are equal. The null hypothesis says the means are equal. The alternative says they differ. The script reports the category means, t statistic, and p-value. The p-value is compared with 0.05. The result only describes the generated data.
 
 ### 7. Correlation and covariance
 
-Covariance shows whether two variables tend to move together. Correlation puts that relationship on a scale from -1 to 1. We calculate both for study hours, attendance, and score using rows with complete values. The scatterplot shows study hours and score. Correlation does not show that one variable caused the other.
+Covariance shows whether two variables tend to move together. Correlation puts that relationship on a scale from -1 to 1. I calculate both for study hours, attendance, and score using rows with complete values. The scatterplot shows study hours and score. Correlation does not show that one variable caused the other.
 
 ### 8. Linear regression and least squares
 
-Linear regression fits a line or plane to predict an outcome. Least squares chooses coefficients that minimize \(\sum_i(y_i-\hat{y}_i)^2\). Our model uses study hours, attendance, treatment label, and group to predict score. We report the coefficients, p-values, R-squared, and a residual plot. The coefficients describe relationships in the simulated data.
+Linear regression fits a line or plane to predict an outcome. Least squares chooses coefficients that minimize \(\sum_i(y_i-\hat{y}_i)^2\). My model uses study hours, attendance, treatment label, and category to predict score. I report the coefficients, p-values, R-squared, and a residual plot. The coefficients describe relationships in the simulated data.
 
 ### 9. Matrix algebra
 
-The least-squares coefficients can be found by solving \((X^TX)\hat{\beta}=X^Ty\). We use this equation for a model with an intercept, study hours, and attendance. We compare the result with the OLS calculation from statsmodels. The very small difference shows that both calculations give the same result here.
+The least-squares coefficients can be found by solving \((X^TX)\hat{\beta}=X^Ty\). I use this equation for a model with an intercept, study hours, and attendance. I compare the result with the OLS calculation from statsmodels. The very small difference shows that both calculations give the same result here.
 
 ### 10. Eigenvalues, eigenvectors, and PCA
 
-Principal component analysis (PCA) turns several related measures into new combined measures. Each component explains part of the overall variation. We standardize study hours, attendance, age, and score, then calculate the components and their explained variation. The first two components explain 62.0% of the variation in this example.
+Principal component analysis (PCA) turns several related measures into new combined measures. Each component explains part of the overall variation. I standardize study hours, attendance, age, and score, then calculate the components and their explained variation. The first two components explain 63.0% of the variation in this example.
 
 ### 11. Numerical optimization
 
-Optimization finds the parameter values that make a chosen result as small or large as possible. We use the BFGS method to find a straight line that minimizes the sum of squared errors when predicting score from study hours. The script reports the line and whether the optimizer reached a solution.
+Optimization finds the parameter values that make a chosen result as small or large as possible. I use the BFGS method to find a straight line that minimizes the sum of squared errors when predicting score from study hours. The script reports the line and whether the optimizer reached a solution.
 
 ### 12. Random numbers and Monte Carlo
 
-Monte Carlo methods use random samples to estimate a value. We draw points in a square and count how many fall inside a circle. The circle-to-square area ratio gives the estimate \(\hat{\pi}=4M/N\), where M is the number inside and N is the total number drawn. More draws usually make the estimate steadier.
+Monte Carlo methods use random samples to estimate a value. I draw points in a square and count how many fall inside a circle. The circle-to-square area ratio gives the estimate \(\hat{\pi}=4M/N\), where M is the number inside and N is the total number drawn. More draws usually make the estimate steadier.
 
 ### 13. Time-series analysis
 
-A time series is a set of values recorded in time order. We create 60 monthly values with an upward trend, yearly pattern, and random noise. The chart shows the pattern. We also calculate the trend per month and the relationship between nearby months. This is an example series, not a forecast for a real service.
+A time series is a set of values recorded in time order. I create 60 monthly values with an upward trend, yearly pattern, and random noise. The chart shows the pattern. I also calculate the trend per month and the relationship between nearby months. This is an example series, not a forecast for a real service.
 
 ### 14. Statistical charts
 
-Charts help us see patterns in the data. The project includes histograms, boxplots, scatterplots, a regression residual plot, PCA and cluster plots, a bootstrap histogram, and a time-series plot. Each chart labels its axes. The charts describe the simulated values only.
+Charts help me see patterns in the data. The project includes histograms, boxplots, scatterplots, a regression residual plot, PCA and cluster plots, a bootstrap histogram, and a time-series plot. Each chart labels its axes. The charts describe the simulated values only.
 
 ### 15. Data transformation and normalization
 
-A z-score is \(z=(x-\bar{x})/s\). It shows how far a value is from the mean in standard-deviation units. Min-max scaling changes values to a range from 0 to 1. We calculate both versions of score and compare their summaries and charts.
+A z-score is \(z=(x-\bar{x})/s\). It shows how far a value is from the mean in standard-deviation units. Min-max scaling changes values to a range from 0 to 1. I calculate both versions of score and compare their summaries and charts.
 
 ### 16. ANOVA and experimental design
 
-One-way ANOVA compares the means of three or more groups. Its test statistic is \(F=MS_{between}/MS_{within}\). We compare scores in groups A, B, and C. If the ANOVA finds a difference, Tukey's test checks pairs of groups. The group labels are made up, so this is not a real experiment.
+One-way ANOVA compares the means of three or more categories. Its test statistic is \(F=MS_{between}/MS_{within}\). I compare scores in categories A, B, and C. If the ANOVA finds a difference, Tukey's test checks pairs of categories. The labels are made up, so this is not a real experiment.
 
 ### 17. Chi-square and categorical data
 
-The chi-square test checks whether two categories are related. It compares the observed counts with counts expected if the categories were independent: \(\chi^2=\sum(O-E)^2/E\). We use a table of group and pass status. Expected counts are all above 5 in this run, which supports using the test's usual approximation.
+The chi-square test checks whether two categories are related. It compares the observed counts with counts expected if the categories were independent: \(\chi^2=\sum(O-E)^2/E\). I use a table of A/B/C category and pass status. Expected counts are all above 5 in this run, which supports using the test's usual approximation.
 
 ### 18. Logistic regression
 
-Logistic regression estimates the chance of a yes/no outcome. It models the log odds as \(\log[p/(1-p)]=\beta_0+X\beta\). We use study hours, attendance, and age to predict pass status. We report coefficients, accuracy, and a confusion matrix. The model predicts almost everyone as a pass, so its accuracy hides its errors on students marked as not passing.
+Logistic regression estimates the chance of a yes/no outcome. It models the log odds as \(\log[p/(1-p)]=\beta_0+X\beta\). I use study hours, attendance, and age to predict pass status. I report coefficients, accuracy, and a confusion matrix. The model predicts almost everyone as a pass, so its accuracy hides its errors on rows marked as not passing.
 
 ### 19. Non-parametric methods
 
-The Mann-Whitney test compares the ranks of values in two independent groups. It does not require the same normal-distribution assumption as a t-test. We use it to compare the two treatment labels and report the test statistic, p-value, and medians. The result still depends on having independent rows.
+The Mann-Whitney test compares the ranks of values in two independent categories. It does not require the same normal-distribution assumption as a t-test. I use it to compare the two treatment labels and report the test statistic, p-value, and medians. The result still depends on having independent rows.
 
 ### 20. Bootstrap and resampling
 
-The bootstrap repeatedly draws new samples from the observed data, allowing the same row to be selected more than once. We calculate the mean score for 2,000 resamples. The spread of those means estimates the standard error, and their 2.5th and 97.5th percentiles give an interval.
+The bootstrap repeatedly draws new samples from the observed data, allowing the same row to be selected more than once. I calculate the mean score for 2,000 resamples. The spread of those means estimates the standard error, and their 2.5th and 97.5th percentiles give an interval.
 
 ### 21. Multivariate analysis
 
-Multivariate analysis looks at several variables at once. We calculate a covariance matrix, use PCA to reduce the number of measures, and use k-means to form three groups. K-means places similar rows together based on distance. The clusters are exploratory and do not have confirmed real-world meanings.
+Multivariate analysis looks at several variables at once. I calculate a covariance matrix, use PCA to reduce the number of measures, and use k-means to form three clusters. K-means places similar rows together based on distance. The clusters are exploratory and do not have confirmed real-world meanings.
 
 ### 22. Missing data
 
-We first count missing values and compare complete-case rows with the full dataset. Then we fill the missing study-hours and attendance values with each column's median. This is a simple example. For real data, we would need to understand why values are missing and check whether the choice of method changes the results.
+I first count missing values and compare complete-case rows with the full dataset. Then I fill the missing study-hours and attendance values with each column's median. This is a simple example. For real data, I would need to understand why values are missing and check whether the choice of method changes the results.
 
 ### 23. Statistical reporting and reproducibility
 
@@ -137,8 +137,8 @@ The scripts use a fixed random seed so the Python example can be repeated. Pytho
 
 ## Conclusion
 
-This project shows how to calculate and explain the 23 methods in the brief. The results come from made-up data, so they are only examples. We would need a real dataset before drawing conclusions about students, schools, or teaching methods.
+This project shows how I calculated and explained the 23 methods in the brief. The results come from made-up data, so they are only examples. I would need a real dataset before drawing conclusions about students, schools, or teaching methods.
 
 ## Source
 
-BIT 4131 Statistical Computing and Reporting Group Work brief supplied for this assignment.
+BIT 4131 Statistical Computing and Reporting assignment brief.

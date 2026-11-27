@@ -10,7 +10,6 @@ This project covers the 23 topics listed in the assignment brief. It includes Py
 - `data/` contains the generated dataset.
 - `results/` contains the result tables.
 - `figures/` contains the charts.
-- `PRESENTATION_OUTLINE.md` has a suggested presentation order.
 
 ## Run the Python examples
 
