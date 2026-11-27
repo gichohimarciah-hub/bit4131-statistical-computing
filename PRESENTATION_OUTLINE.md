@@ -1,19 +1,17 @@
 # Presentation outline
 
-The brief requests a presentation and asks groups to share the implementation/data-analysis link (items 3-6) during the presentation. This outline is a speaking aid, not a finished slide deck. Replace the group placeholders and link before presenting.
+Add the group members' names and registration numbers before presenting. Show the GitHub link on the final slide.
 
-## Suggested order
+1. **Introduce the project** - Give the course name, topic, and group members.
+2. **Explain the data** - Say that the 1,200 records are synthetic, show the variables, and explain why some values are missing.
+3. **Describe data and probability (topics 1-4)** - Show the score summaries, probability examples, and the sampling-distribution chart.
+4. **Compare groups (topics 5-7, 16-17, 19-20)** - Explain the confidence interval, tests, correlation, ANOVA, chi-square test, rank test, and bootstrap interval.
+5. **Show models and calculations (topics 8-12, 18)** - Cover regression, matrix calculations, PCA, optimization, Monte Carlo, and logistic regression.
+6. **Show time and data preparation (topics 13-15, 21-22)** - Show the time-series chart, other plots, normalization, clustering, and missing-data example.
+7. **Explain how to repeat the work (topic 23)** - Show the Python and R files, the fixed random seed, and where results are saved.
+8. **End with the limits** - Remind the class that the data are made up and cannot tell us what happens at a real school.
+9. **Share the repository** - Add the GitHub link for the code and results.
 
-1. **Title and team** - BIT 4131, project title, group members and registration numbers.
-2. **Aim and dataset** - explain that the included dataset is synthetic, why it was generated, the variables, missingness, sample size, and fixed seed.
-3. **Probability and distributions (topics 1-4)** - descriptive summaries, probability, distributions, sampling distribution/CLT; show selected output and histogram.
-4. **Inference and association (topics 5-7, 16-17, 19-20)** - confidence interval, Welch test, correlation, ANOVA, chi-square, rank test, bootstrap; explain assumptions and how to read p-values/intervals.
-5. **Models and computation (topics 8-12, 18)** - OLS, matrix solution, PCA/eigenvalues, optimization, Monte Carlo, logistic regression; explain outputs and diagnostics.
-6. **Time, visualization and data preparation (topics 13-15, 21-22)** - synthetic series, plots, normalization, multivariate exploration, missing-data summary/imputation.
-7. **Reproducible reporting (topic 23)** - show folder layout, fixed seeds, Python/R implementations, and how to reproduce outputs.
-8. **Limitations and conclusion** - synthetic data cannot support claims about actual students or interventions; summarize demonstrated methods.
-9. **Repository link** - insert the GitHub URL once the repository has been created and pushed.
+## Short demo
 
-## Suggested live demo
-
-From the repository root, run `python src/analysis.py`. Point to `results/summary.csv` and two or three figures. If R is available, run `Rscript src/analysis.R` as the second-language implementation. Do not claim outputs from a dataset the group has not actually analyzed.
+From the project folder, run `python src/analysis.py`. Open `results/summary.csv` and choose a few charts to explain. If R is installed, run `Rscript src/analysis.R` to show the R version too.

@@ -1,11 +1,12 @@
-# Pushing the project to GitHub
+# Updating the GitHub repository
 
-The local repository is connected to `https://github.com/gichohimarciah-hub/bit4131-statistical-computing.git` and has an initial commit on `main`. The push was not completed because this computer has no GitHub credentials available to the command-line Git client.
-
-After signing in to GitHub through Git Credential Manager, open PowerShell and run:
+The first version is on GitHub. After making changes in this local project folder, add and commit them, then push:
 
 ```powershell
-git -C "C:\Users\hp\Documents\Codex\2026-11-27\i-x20\outputs\bit4131-statistical-computing" push -u origin main
+$repo = "C:\Users\hp\Documents\Codex\2026-11-27\i-x20\outputs\bit4131-statistical-computing"
+git -c "safe.directory=$repo" -C $repo add .
+git -c "safe.directory=$repo" -C $repo commit -m "Update project"
+git -c "safe.directory=$repo" -C $repo push
 ```
 
-If Git prompts you, complete the normal GitHub sign-in in the browser. Do not paste a password or personal access token into the repository or a command. After the push succeeds, the repository page will show the project files; share that URL during the presentation as requested in the brief.
+The `safe.directory` setting is applied only to those commands because the project folder was created by a different Windows account. Do not add a password or personal access token to any project file.
