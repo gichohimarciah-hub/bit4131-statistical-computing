@@ -4,7 +4,7 @@ This project covers the 23 topics listed in the assignment brief. It includes Py
 
 ## Files
 
-- `REPORT.md` explains the methods and gives the Python results.
+- `REPORT.md` explains the methods and gives the Python and R results.
 - `src/analysis.py` runs the Python examples.
 - `src/analysis.R` contains the R examples.
 - `requirements.txt` lists the Python packages used by the script.
