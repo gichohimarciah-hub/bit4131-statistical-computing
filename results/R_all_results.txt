@@ -1,0 +1,298 @@
+$`01_descriptive`
+         n       mean     median   variance         sd     q1.25%     q3.75% 
+1200.00000   59.19277   58.86000   91.30089    9.55515   52.91250   65.88000 
+       iqr      range 
+  12.96750   73.23000 
+
+$`02_probability`
+               p_pass            p_workshop p_pass_given_workshop 
+            0.8358333             0.4908333             0.8896435 
+              p_joint 
+            0.4366667 
+
+$`03_distributions`
+               binomial_pmf                binomial_cdf 
+                  0.2050781                   0.8281250 
+fitted_normal_within_one_sd 
+                  0.6826895 
+
+$`04_sampling_clt`
+population_mean   sampling_mean     sampling_sd  theoretical_se 
+      69.958367       69.965054        1.893492        1.897760 
+
+$`05_confidence_interval`
+[1] 58.65161 59.73394
+attr(,"conf.level")
+[1] 0.95
+
+$`06_hypothesis_test`
+workshop_mean  control_mean     statistic       p_value 
+ 6.095341e+01  5.749553e+01 -6.372928e+00  2.640015e-10 
+
+$`07_correlation_covariance`
+$`07_correlation_covariance`$correlation
+               study_hours attendance_pct     score
+study_hours     1.00000000    -0.04684358 0.3971987
+attendance_pct -0.04684358     1.00000000 0.2381425
+score           0.39719868     0.23814248 1.0000000
+
+$`07_correlation_covariance`$covariance
+               study_hours attendance_pct    score
+study_hours      12.168702      -2.033314 13.10551
+attendance_pct   -2.033314     154.833383 28.02806
+score            13.105507      28.028061 89.46389
+
+
+$`08_linear_regression`
+$`08_linear_regression`$coefficients
+      (Intercept)       study_hours    attendance_pct treatmentWorkshop 
+       35.6005525         1.1177610         0.1911162         3.3057287 
+           groupB            groupC 
+        2.4600166        -1.5931312 
+
+$`08_linear_regression`$p_values
+      (Intercept)       study_hours    attendance_pct treatmentWorkshop 
+     4.461592e-79      1.888196e-48      3.002202e-20      9.260458e-11 
+           groupB            groupC 
+     6.025034e-05      1.152345e-02 
+
+$`08_linear_regression`$r_squared
+[1] 0.283804
+
+$`08_linear_regression`$n
+[1] 1014
+
+
+$`09_matrix_algebra`
+$`09_matrix_algebra`$dim
+[1] 1014    3
+
+$`09_matrix_algebra`$determinant
+[1] 1.956193e+12
+
+$`09_matrix_algebra`$beta
+   (Intercept)    study_hours attendance_pct 
+    37.2708573      1.1096671      0.1955932 
+
+
+$`10_pca`
+$`10_pca`$eigenvalues
+[1] 1.4439315 1.0741540 0.9685787 0.5133358
+
+$`10_pca`$variance_ratio
+[1] 0.3609829 0.2685385 0.2421447 0.1283339
+
+$`10_pca`$rotation
+                      PC1         PC2         PC3         PC4
+study_hours    0.61454290 -0.42873500  0.26565056 -0.60659139
+attendance_pct 0.31982825  0.70704357 -0.49404186 -0.39207388
+age            0.03145083 -0.55720352 -0.82735774  0.06335811
+score          0.72045663  0.07615733  0.02883722  0.68870220
+
+
+$`11_optimization`
+$`11_optimization`$parameters
+[1] 52.681516  1.076985
+
+$`11_optimization`$minimum
+[1] 76329
+
+$`11_optimization`$convergence_code
+[1] 0
+
+
+$`12_monte_carlo`
+         draws    pi_estimate approximate_se 
+  5.000000e+05   3.143000e+00   2.321013e-03 
+
+$`13_time_series`
+          n        mean        lag1     slope.t 
+ 60.0000000 252.7319655   0.9131452   1.6363656 
+
+$`14_visualization`
+$`14_visualization`$observations
+[1] 1200
+
+$`14_visualization`$encoding
+[1] "attendance vs score; color denotes generated pass status"
+
+
+$`15_transform_normalize`
+    raw_mean       raw_sd       z_mean         z_sd   minmax_min   minmax_max 
+5.919277e+01 9.555150e+00 2.486048e-16 1.000000e+00 0.000000e+00 1.000000e+00 
+
+$`16_anova`
+$`16_anova`$anova
+              Df Sum Sq Mean Sq F value   Pr(>F)    
+group          2   2680  1339.8   15.02 3.62e-07 ***
+Residuals   1197 106790    89.2                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+$`16_anova`$group_means
+       A        B        C 
+58.82326 61.09309 57.50661 
+
+$`16_anova`$tukey
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = score ~ group, data = dat)
+
+$group
+         diff        lwr        upr     p adj
+B-A  2.269831  0.7120754  3.8275875 0.0018759
+C-A -1.316650 -2.9049185  0.2716191 0.1265726
+C-B -3.586481 -5.1452763 -2.0276861 0.0000002
+
+
+
+$`17_chi_square`
+$`17_chi_square`$table
+   
+      0   1
+  A  71 319
+  B  51 370
+  C  75 314
+
+$`17_chi_square`$expected
+   
+           0        1
+  A 64.02500 325.9750
+  B 69.11417 351.8858
+  C 63.86083 325.1392
+
+$`17_chi_square`$statistic
+[1] 8.913752
+
+$`17_chi_square`$df
+[1] 2
+
+$`17_chi_square`$p_value
+[1] 0.01159854
+
+
+$`18_logistic_regression`
+$`18_logistic_regression`$coefficients
+   (Intercept)    study_hours attendance_pct            age 
+   -1.56860438     0.28569407     0.03306891    -0.03787615 
+
+$`18_logistic_regression`$odds_ratios
+   (Intercept)    study_hours attendance_pct            age 
+     0.2083357      1.3306853      1.0336218      0.9628322 
+
+$`18_logistic_regression`$accuracy
+[1] 0.8464567
+
+$`18_logistic_regression`$confusion
+      predicted
+actual   0   1
+     0   0  37
+     1   2 215
+
+
+$`19_nonparametric`
+$`19_nonparametric`$statistic
+[1] 143391.5
+
+$`19_nonparametric`$p_value
+[1] 1.130944e-09
+
+$`19_nonparametric`$medians
+ Control Workshop 
+   57.31    60.52 
+
+
+$`20_bootstrap`
+bootstrap_mean   bootstrap_se           2.5%          97.5% 
+    59.1960796      0.2758417     58.6275683     59.7266192 
+
+$`21_multivariate`
+$`21_multivariate`$covariance
+               study_hours attendance_pct        age      score
+study_hours     12.1687025     -2.0333144  0.4260285 13.1055068
+attendance_pct  -2.0333144    154.8333825 -0.7466759 28.0280611
+age              0.4260285     -0.7466759  5.5362646 -0.3020831
+score           13.1055068     28.0280611 -0.3020831 89.4638886
+
+$`21_multivariate`$pca2_variance
+[1] 0.6295214
+
+$`21_multivariate`$cluster_sizes
+[1] 230 402 382
+
+
+$`22_missing_data`
+$`22_missing_data`$missing_count
+   study_hours attendance_pct 
+            96             96 
+
+$`22_missing_data`$missing_fraction
+   study_hours attendance_pct 
+          0.08           0.08 
+
+$`22_missing_data`$medians
+   study_hours attendance_pct 
+         5.405         78.100 
+
+$`22_missing_data`$complete_case_n
+[1] 1014
+
+$`22_missing_data`$imputed_n
+[1] 1200
+
+$`22_missing_data`$method
+[1] "median"
+
+$`22_missing_data`$before_after_mean_sd
+$`22_missing_data`$before_after_mean_sd$study_hours
+$`22_missing_data`$before_after_mean_sd$study_hours$before_mean
+[1] 5.981893
+
+$`22_missing_data`$before_after_mean_sd$study_hours$before_sd
+[1] 3.487634
+
+$`22_missing_data`$before_after_mean_sd$study_hours$after_mean
+[1] 5.935742
+
+$`22_missing_data`$before_after_mean_sd$study_hours$after_sd
+[1] 3.348762
+
+
+$`22_missing_data`$before_after_mean_sd$attendance_pct
+$`22_missing_data`$before_after_mean_sd$attendance_pct$before_mean
+[1] 77.6625
+
+$`22_missing_data`$before_after_mean_sd$attendance_pct$before_sd
+[1] 12.55425
+
+$`22_missing_data`$before_after_mean_sd$attendance_pct$after_mean
+[1] 77.6975
+
+$`22_missing_data`$before_after_mean_sd$attendance_pct$after_sd
+[1] 12.04176
+
+
+
+
+$`23_reproducibility`
+$`23_reproducibility`$random_seed
+[1] 4131
+
+$`23_reproducibility`$synthetic_rows
+[1] 1200
+
+$`23_reproducibility`$synthetic_data_only
+[1] TRUE
+
+$`23_reproducibility`$data_file
+[1] "data/synthetic_student_outcomes.csv"
+
+$`23_reproducibility`$monthly_series_file
+[1] "results/13_monthly_series.csv"
+
+$`23_reproducibility`$output_files
+[1] "results/R_summary.csv"     "results/R_all_results.txt"
+[3] "figures/R_*.png"          
+
+

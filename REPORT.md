@@ -12,6 +12,7 @@ The mean is the total divided by the number of values. The median is the middle 
 
 ![Score histogram](figures/01_score_histogram.png)
 ![Score boxplot](figures/01_score_boxplot.png)
+![R score histogram](figures/R_01_score_histogram.png)
 
 ## 2. Probability
 
@@ -34,6 +35,7 @@ The standard error of a sample mean is approximately $\sigma/\sqrt{n}$. I drew 2
 **Worked example:** If a population standard deviation is 12 and the sample size is 36, the standard error is $12/\sqrt{36}=2$.
 
 ![Sampling distribution](figures/04_clt.png)
+![R sampling distribution](figures/R_04_clt.png)
 
 ## 5. Confidence interval
 
@@ -62,6 +64,7 @@ Least squares chooses coefficients to minimize $\sum_i(y_i-\hat{y}_i)^2$. I fitt
 **Worked example:** For the line $\hat{y}=2+3x$, when $x=4$, the predicted value is $2+3(4)=14$.
 
 ![Regression residuals](figures/08_regression_residuals.png)
+![R regression residuals](figures/R_08_residuals.png)
 
 ## 9. Matrix algebra
 
@@ -76,6 +79,7 @@ PCA combines several measures into new components. After standardizing study hou
 **Worked example:** For the diagonal matrix $\begin{bmatrix}3&0\\0&1\end{bmatrix}$, the eigenvalues are 3 and 1, and the matching directions are the two coordinate axes.
 
 ![PCA variance](figures/10_pca_variance.png)
+![R PCA variance](figures/R_10_pca.png)
 
 ## 11. Numerical optimization
 
@@ -102,6 +106,7 @@ The 60-month synthetic series has an upward trend and a repeating yearly pattern
 ![Monthly series](figures/13_time_series.png)
 ![Seasonal decomposition](figures/13_seasonal_decomposition.png)
 ![12-month forecast](figures/13_forecast.png)
+![R monthly series](figures/R_13_time_series.png)
 
 ## 14. Statistical charts
 
@@ -110,6 +115,7 @@ I used a scatter plot to compare attendance and score, with color showing the ge
 **Worked example:** If points on a scatter plot move upward from left to right, the two measures have a positive association.
 
 ![Attendance and score](figures/14_scatter.png)
+![R attendance and score](figures/R_14_scatter.png)
 
 ## 15. Data transformation and normalization
 
@@ -150,6 +156,7 @@ The bootstrap repeatedly samples from observed rows, allowing a row to appear mo
 **Worked example:** A bootstrap sample from [2, 4, 6] could be [2, 2, 6]; its mean is $10/3$.
 
 ![Bootstrap means](figures/20_bootstrap.png)
+![R bootstrap means](figures/R_20_bootstrap.png)
 
 ## 21. Multivariate analysis
 
@@ -170,7 +177,7 @@ Study hours and attendance each had 96 missing values (8%); 1,014 rows had both 
 
 ## 23. Statistical reporting and reproducibility
 
-Both scripts use seed 4131. Python creates the synthetic data and monthly series; R reads those same files and produces its own summaries and charts. Python results are saved in `results/all_results.json` and `results/summary.csv`. R results are saved in `results/R_all_results.txt` and `results/R_summary.csv`. I could not run the R script in this environment because R is not installed and the official installer download was blocked, so R output files are not included yet.
+Both scripts use seed 4131. Python creates the synthetic data and monthly series; R reads those same files. The R linear model had an $R^2$ of 0.284, and its first two principal components explained 63.0% of the variation. The R logistic model had 84.6% accuracy on its test data, but it marked 37 generated failures as passes and missed 2 passes. R's 95% bootstrap interval for the mean score was 58.63 to 59.73. These results are from the same synthetic data, not real student records. Python results are in `results/all_results.json` and `results/summary.csv`; R results are in `results/R_all_results.txt` and `results/R_summary.csv`.
 
 **Worked example:** Setting a random seed before a simulation makes the same pseudo-random sequence repeat when the same software and settings are used.
 

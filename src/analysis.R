@@ -54,7 +54,7 @@ reg <- na.omit(dat[c("score","study_hours","attendance_pct","age","treatment","g
 fit <- lm(score ~ study_hours + attendance_pct + treatment + group, data=reg)
 res[["08_linear_regression"]] <- list(coefficients=coef(fit), p_values=coef(summary(fit))[,4],
   r_squared=summary(fit)$r.squared, n=nobs(fit))
-saveplot("R_08_residuals.png", plot(fitted(fit),resid(fit),xlab="Fitted",ylab="Residual",main="OLS residual diagnostic"); abline(h=0))
+saveplot("R_08_residuals.png", { plot(fitted(fit),resid(fit),xlab="Fitted",ylab="Residual",main="OLS residual diagnostic"); abline(h=0) })
 
 # 9 Matrix algebra least-squares solution
 X <- model.matrix(~ study_hours + attendance_pct, data=reg); y <- reg$score
@@ -62,8 +62,8 @@ beta <- solve(crossprod(X), crossprod(X,y))
 res[["09_matrix_algebra"]] <- list(dim=dim(X), determinant=det(crossprod(X)), beta=drop(beta))
 
 # 10 Eigenvalues, eigenvectors and PCA
-pred <- scale(reg[c("study_hours","attendance_pct","age","score")])
-pc <- prcomp(pred, center=FALSE, scale.=FALSE)
+scaled_predictors <- scale(reg[c("study_hours","attendance_pct","age","score")])
+pc <- prcomp(scaled_predictors, center=FALSE, scale.=FALSE)
 res[["10_pca"]] <- list(eigenvalues=pc$sdev^2, variance_ratio=(pc$sdev^2)/sum(pc$sdev^2), rotation=pc$rotation)
 saveplot("R_10_pca.png", plot(cumsum(pc$sdev^2/sum(pc$sdev^2)), type="b", xlab="Components", ylab="Cumulative variance", main="PCA variance"))
 
@@ -89,8 +89,8 @@ res[["13_time_series"]] <- c(n=length(series), mean=mean(series), lag1=acf(serie
 saveplot("R_13_time_series.png", plot(series, main="Synthetic monthly enrollment series", ylab="Enrollment index"))
 
 # 14 Statistical visualization
-saveplot("R_14_scatter.png", plot(dat$attendance_pct,dat$score,col=ifelse(dat$passed==1,"firebrick","navy"),
-  xlab="Attendance (%)",ylab="Score",main="Score by attendance"); legend("topright",legend=c("Fail","Pass"),pch=1,col=c("navy","firebrick")))
+saveplot("R_14_scatter.png", { plot(dat$attendance_pct,dat$score,col=ifelse(dat$passed==1,"firebrick","navy"),
+  xlab="Attendance (%)",ylab="Score",main="Score by attendance"); legend("topright",legend=c("Fail","Pass"),pch=1,col=c("navy","firebrick")) })
 res[["14_visualization"]] <- list(observations=nrow(dat),encoding="attendance vs score; color denotes generated pass status")
 
 # 15 Transformations and normalization
@@ -108,9 +108,9 @@ res[["17_chi_square"]] <- list(table=tab,expected=ch$expected,statistic=unname(c
 # 18 Logistic regression, simple training/test split
 lg <- na.omit(dat[c("passed","study_hours","attendance_pct","age")]); set.seed(4131)
 train_id <- sample(seq_len(nrow(lg)),floor(.75*nrow(lg))); glmfit <- glm(passed~study_hours+attendance_pct+age,data=lg[train_id,],family=binomial())
-prob <- predict(glmfit,newdata=lg[-train_id,],type="response"); pred <- as.integer(prob>=.5)
+prob <- predict(glmfit,newdata=lg[-train_id,],type="response"); class_pred <- as.integer(prob>=.5)
 res[["18_logistic_regression"]] <- list(coefficients=coef(glmfit), odds_ratios=exp(coef(glmfit)),
-  accuracy=mean(pred==lg$passed[-train_id]), confusion=table(actual=lg$passed[-train_id],predicted=pred))
+  accuracy=mean(class_pred==lg$passed[-train_id]), confusion=table(actual=lg$passed[-train_id],predicted=class_pred))
 
 # 19 Mann-Whitney non-parametric comparison
 mw <- wilcox.test(score~treatment,data=dat,exact=FALSE)
@@ -123,7 +123,7 @@ res[["20_bootstrap"]] <- c(bootstrap_mean=mean(bs),bootstrap_se=sd(bs),quantile(
 saveplot("R_20_bootstrap.png", hist(bs,breaks=30,main="Bootstrap distribution of mean score",xlab="Bootstrap mean",col="darkorange"))
 
 # 21 Multivariate summaries, PCA and base-R k-means
-set.seed(4131); km <- kmeans(pred,centers=3,nstart=10)
+set.seed(4131); km <- kmeans(scaled_predictors,centers=3,nstart=10)
 res[["21_multivariate"]] <- list(covariance=cov(reg[c("study_hours","attendance_pct","age","score")]),
   pca2_variance=sum(pc$sdev[1:2]^2)/sum(pc$sdev^2),cluster_sizes=km$size)
 
