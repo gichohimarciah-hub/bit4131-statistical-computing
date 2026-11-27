@@ -6,21 +6,12 @@ root <- getwd()
 dir.create(file.path(root, "data"), showWarnings = FALSE, recursive = TRUE)
 dir.create(file.path(root, "results"), showWarnings = FALSE, recursive = TRUE)
 dir.create(file.path(root, "figures"), showWarnings = FALSE, recursive = TRUE)
-n <- 1200
-group <- sample(c("A", "B", "C"), n, replace = TRUE)
-treatment <- sample(c("Control", "Workshop"), n, replace = TRUE)
-age <- pmin(35, pmax(17, rnorm(n, 21.5, 2.4)))
-hours <- pmin(30, rgamma(n, 3, scale = 2))
-attendance <- pmin(100, pmax(20, rnorm(n, 78, 13)))
-score <- pmin(100, pmax(0, 32 + 1.3*hours + .22*attendance +
-  ifelse(treatment == "Workshop", 3, 0) + c(A=0, B=2, C=-1)[group] + rnorm(n, 0, 8)))
-passed <- as.integer(score >= 50)
-dat <- data.frame(student_id=1:n, group, treatment, age=round(age,1),
-                  study_hours=round(hours,2), attendance_pct=round(attendance,1),
-                  score=round(score,2), passed)
-dat$study_hours[sample(n, round(.08*n))] <- NA
-dat$attendance_pct[sample(n, round(.08*n))] <- NA
-write.csv(dat, file.path(root, "data", "synthetic_student_outcomes_R.csv"), row.names=FALSE)
+data_path <- file.path(root, "data", "synthetic_student_outcomes.csv")
+if (!file.exists(data_path)) stop("Run the Python script first to create the shared dataset.")
+dat <- read.csv(data_path)
+required_columns <- c("student_id", "group", "treatment", "age", "study_hours", "attendance_pct", "score", "passed")
+if (!all(required_columns %in% names(dat))) stop("The shared dataset is missing required columns.")
+n <- nrow(dat)
 res <- list()
 saveplot <- function(name, expr) { png(file.path(root,"figures",name), width=900, height=600); force(expr); dev.off() }
 
@@ -38,7 +29,7 @@ res[["02_probability"]] <- c(p_pass=mean(pass), p_workshop=mean(ws),
 
 # 3 Distributions
 res[["03_distributions"]] <- c(binomial_pmf=dbinom(6,10,.5), binomial_cdf=pbinom(6,10,.5),
-  normal_between_60_80=pnorm(80,70,10)-pnorm(60,70,10))
+  fitted_normal_within_one_sd=pnorm(mean(x)+sd(x),mean(x),sd(x))-pnorm(mean(x)-sd(x),mean(x),sd(x)))
 
 # 4 Sampling distributions and CLT
 pop <- rnorm(100000,70,12); means <- replicate(2000, mean(sample(pop,40)))
@@ -85,8 +76,15 @@ res[["11_optimization"]] <- list(parameters=op$par, minimum=op$value, convergenc
 u <- runif(500000,-1,1); v <- runif(500000,-1,1); p_in <- mean(u^2+v^2<=1)
 res[["12_monte_carlo"]] <- c(draws=length(u), pi_estimate=4*p_in, approximate_se=4*sqrt(p_in*(1-p_in)/length(u)))
 
-# 13 Synthetic time series with trend and seasonality
-t <- 0:59; series <- ts(200+1.8*t+15*sin(2*pi*t/12)+rnorm(60,0,5), start=c(2021,1), frequency=12)
+# 13 Read the monthly series created by the Python script
+monthly_path <- file.path(root,"results","13_monthly_series.csv")
+if (!file.exists(monthly_path)) stop("Run the Python script first to create the monthly series.")
+monthly <- read.csv(monthly_path,check.names=FALSE)
+series_dates <- as.Date(monthly[[1]])
+series_values <- monthly[[2]]
+series <- ts(series_values,start=c(as.integer(format(series_dates[1],"%Y")),
+  as.integer(format(series_dates[1],"%m"))),frequency=12)
+t <- seq_along(series)-1
 res[["13_time_series"]] <- c(n=length(series), mean=mean(series), lag1=acf(series,plot=FALSE)$acf[2], slope=coef(lm(as.numeric(series)~t))[2])
 saveplot("R_13_time_series.png", plot(series, main="Synthetic monthly enrollment series", ylab="Enrollment index"))
 
@@ -132,12 +130,17 @@ res[["21_multivariate"]] <- list(covariance=cov(reg[c("study_hours","attendance_
 # 22 Missing-data analysis and median imputation illustration
 m <- dat[c("study_hours","attendance_pct")]; imp <- m
 for (nm in names(imp)) imp[[nm]][is.na(imp[[nm]])] <- median(imp[[nm]],na.rm=TRUE)
+before_after <- lapply(names(m), function(nm) list(before_mean=mean(m[[nm]],na.rm=TRUE),
+  before_sd=sd(m[[nm]],na.rm=TRUE),after_mean=mean(imp[[nm]]),after_sd=sd(imp[[nm]])))
+names(before_after) <- names(m)
 res[["22_missing_data"]] <- list(missing_count=colSums(is.na(m)),missing_fraction=colMeans(is.na(m)),
-  medians=sapply(m,median,na.rm=TRUE),complete_case_n=sum(complete.cases(m)),imputed_n=nrow(imp),method="median")
+  medians=sapply(m,median,na.rm=TRUE),complete_case_n=sum(complete.cases(m)),imputed_n=nrow(imp),method="median",
+  before_after_mean_sd=before_after)
 
 # 23 Reproducible reporting: write all topic results to readable CSV; console output is captured in Rscript log.
 res[["23_reproducibility"]] <- list(random_seed=4131,synthetic_rows=n,synthetic_data_only=TRUE,
-  data_file="data/synthetic_student_outcomes_R.csv",output_files=c("results/R_summary.csv","results/R_all_results.txt","figures/R_*.png"))
+  data_file="data/synthetic_student_outcomes.csv",monthly_series_file="results/13_monthly_series.csv",
+  output_files=c("results/R_summary.csv","results/R_all_results.txt","figures/R_*.png"))
 flat <- data.frame(topic=names(res), result=vapply(res,function(z) paste(capture.output(str(z)),collapse=" "),character(1)))
 write.csv(flat,file.path(root,"results","R_summary.csv"),row.names=FALSE)
 capture.output(print(res),file=file.path(root,"results","R_all_results.txt"))

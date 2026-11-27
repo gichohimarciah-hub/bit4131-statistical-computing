@@ -3,4 +3,4 @@ pandas
 scipy
 scikit-learn
 statsmodels
-matplotlib
+matplotlib>=3.10
