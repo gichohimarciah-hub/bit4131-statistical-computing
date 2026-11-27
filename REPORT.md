@@ -30,9 +30,9 @@ The results below came from the Python script with random seed 4131. The complet
 - The optimization example found a line with an intercept of 52.68 and a slope of 1.077.
 - The Monte Carlo estimate of pi was 3.1434 from 500,000 random points. Its estimated simulation error was 0.00232.
 - The made-up 60-month series had a trend of 1.636 units per month and lag-one autocorrelation of 0.949.
-- The Python script made 12 charts. They show score distributions, group relationships, model residuals, PCA, a time series, a bootstrap sample, and clusters.
+- The Python script made 12 charts. They show score distributions, category relationships, model residuals, PCA, a time series, a bootstrap sample, and clusters.
 - The score z-scores had a mean near 0 and a standard deviation of 1. Min-max scaling changed the scores to a range from 0 to 1.
-- The group ANOVA gave F=15.02 and p=0.000000362. Tukey's comparisons found differences between A and B, and between B and C.
+- The ANOVA across categories gave F=15.02 and p=0.000000362. Tukey's comparisons found differences between A and B, and between B and C.
 - The chi-square test gave 8.914 with 2 degrees of freedom and p=0.0116. Expected counts were above 5 in every cell.
 - The logistic model had 83.1% accuracy on its test sample. Its confusion matrix shows that it predicted almost every row as a pass, so accuracy alone gives a misleading picture.
 - The Mann-Whitney test gave U=216,487.5 and p=0.00000000113. The medians were 60.52 for Workshop and 57.31 for Control.
@@ -133,7 +133,7 @@ I first count missing values and compare complete-case rows with the full datase
 
 ### 23. Statistical reporting and reproducibility
 
-The scripts use a fixed random seed so the Python example can be repeated. Python saves results as JSON and CSV. R saves a text summary and CSV. Both scripts save charts and data. Keeping the code, data, and results together lets the group repeat the same analysis later.
+The scripts use a fixed random seed so the Python example can be repeated. Python saves results as JSON and CSV. R saves a text summary and CSV. Both scripts save charts and data. Keeping the code, data, and results together lets me repeat the same analysis later.
 
 ## Conclusion
 
