@@ -7,26 +7,10 @@ This project covers the 23 topics listed in the assignment brief. It includes Py
 - `REPORT.md` explains the methods and gives the Python results.
 - `src/analysis.py` runs the Python examples.
 - `src/analysis.R` contains the R examples.
+- `requirements.txt` lists the Python packages used by the script.
 - `data/` contains the generated dataset.
 - `results/` contains the result tables.
 - `figures/` contains the charts.
-
-## Run the Python examples
-
-Install Python 3.10 or later, then run these commands from this folder:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python src/analysis.py
-```
-
-To run the R examples, open this folder in a terminal with R installed and run:
-
-```sh
-Rscript src/analysis.R
-```
 
 ## About the data
 
