@@ -1,16 +1,15 @@
 # BIT 4131 Statistical Computing and Reporting
 
-**Group members:** Add names and registration numbers  
 **Languages:** Python and R  
 **Data:** Made-up data created for this project
 
 ## Introduction
 
-We used Python and R to work through the 23 topics in the group-work brief. The brief did not include a dataset, so our scripts make a dataset for practice. The results and charts show how the methods work. They do not tell us anything about real students or schools.
+I use Python and R to cover the 23 topics in the assignment brief. The brief did not include a dataset, so I use a made-up dataset for practice. The results and charts show how the methods work. They do not tell me anything about real students or schools.
 
 ## Data
 
-The Python script makes 1,200 rows. Each row has a group label, a treatment label, age, study hours, attendance, a score, and a pass result. The score is made from study hours, attendance, the labels, and random noise. A score of 50 or more is marked as a pass. The script sets 8% of the study-hours values and 8% of the attendance values to missing.
+The Python script makes 1,200 rows. Each row has an A/B/C category, a treatment label, age, study hours, attendance, a score, and a pass result. The score is made from study hours, attendance, the labels, and random noise. A score of 50 or more is marked as a pass. The script sets 8% of the study-hours values and 8% of the attendance values to missing.
 
 The treatment label in this example is part of the data generator. It does not represent a real workshop or experiment. Any difference between the two labels is only a result from these made-up values.
 
