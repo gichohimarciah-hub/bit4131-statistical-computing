@@ -1,0 +1,365 @@
+{
+  "01_descriptive": {
+    "n": 1200,
+    "mean": 59.192775000000005,
+    "median": 58.86,
+    "mode_rounded": 57.0,
+    "variance_sample": 91.3008909585071,
+    "sd_sample": 9.555149970487491,
+    "q1": 52.9125,
+    "q3": 65.88,
+    "iqr": 12.967499999999994,
+    "range": 73.23
+  },
+  "02_probability": {
+    "P(pass)": 0.8358333333333333,
+    "P(workshop)": 0.49083333333333334,
+    "P(pass_given_workshop)": 0.8896434634974533,
+    "P(workshop_and_pass)": 0.43666666666666665,
+    "simulated_two_heads_2_flips": 0.24818
+  },
+  "03_distributions": {
+    "binomial_n10_p0.5_P(X=6)": 0.2050781249999999,
+    "binomial_n10_p0.5_P(X<=6)": 0.828125,
+    "normal_mu70_sigma10_P(60<X<80)": 0.6826894921370859
+  },
+  "04_sampling_clt": {
+    "population_mean": 70.00021431301525,
+    "sample_mean_average": 69.92449287298487,
+    "sample_mean_sd": 1.924804606161869,
+    "theoretical_se": 1.9000387853165914
+  },
+  "05_confidence_interval": {
+    "confidence": 0.95,
+    "mean": 59.192775000000005,
+    "lower": 58.65160514049526,
+    "upper": 59.733944859504746
+  },
+  "06_hypothesis_test": {
+    "H0": "equal population means",
+    "H1": "different population means",
+    "test": "Welch two-sample t-test",
+    "workshop_mean": 60.95341256366723,
+    "control_mean": 57.495531914893625,
+    "t": 6.372928014754393,
+    "p_value": 2.640014860990372e-10,
+    "alpha": 0.05,
+    "decision": "reject H0"
+  },
+  "07_correlation_covariance": {
+    "correlation": {
+      "study_hours": {
+        "study_hours": 1.0,
+        "attendance_pct": -0.0468,
+        "score": 0.3972
+      },
+      "attendance_pct": {
+        "study_hours": -0.0468,
+        "attendance_pct": 1.0,
+        "score": 0.2381
+      },
+      "score": {
+        "study_hours": 0.3972,
+        "attendance_pct": 0.2381,
+        "score": 1.0
+      }
+    },
+    "covariance": {
+      "study_hours": {
+        "study_hours": 12.1687,
+        "attendance_pct": -2.0333,
+        "score": 13.1055
+      },
+      "attendance_pct": {
+        "study_hours": -2.0333,
+        "attendance_pct": 154.8334,
+        "score": 28.0281
+      },
+      "score": {
+        "study_hours": 13.1055,
+        "attendance_pct": 28.0281,
+        "score": 89.4639
+      }
+    }
+  },
+  "08_linear_regression": {
+    "formula": "score ~ study_hours + attendance_pct + treatment + group",
+    "coefficients": {
+      "Intercept": 35.60055253562252,
+      "C(treatment)[T.Workshop]": 3.3057287245239984,
+      "C(group)[T.B]": 2.4600166175872022,
+      "C(group)[T.C]": -1.5931312008974312,
+      "study_hours": 1.117760955752066,
+      "attendance_pct": 0.1911161855339542
+    },
+    "p_values": {
+      "Intercept": 4.461592318228097e-79,
+      "C(treatment)[T.Workshop]": 9.260457736559701e-11,
+      "C(group)[T.B]": 6.0250342715242654e-05,
+      "C(group)[T.C]": 0.011523450395431145,
+      "study_hours": 1.888195768207345e-48,
+      "attendance_pct": 3.0022020079477414e-20
+    },
+    "r_squared": 0.28380400730501887,
+    "n": 1014,
+    "interpretation_note": "Associations in synthetic data; not causal estimates."
+  },
+  "09_matrix_algebra": {
+    "design_shape": [
+      1014,
+      3
+    ],
+    "XTX_determinant": 1956192962624.5798,
+    "ols_beta_intercept_hours_attendance": [
+      37.27085727542495,
+      1.1096671399626203,
+      0.1955932416486574
+    ],
+    "max_abs_difference_from_statsmodels": 4.476419235288631e-13
+  },
+  "10_pca": {
+    "explained_variance_ratio": [
+      0.3609828842545537,
+      0.26853851226132924,
+      0.24214466590540376,
+      0.12833393757871342
+    ],
+    "components": [
+      [
+        0.6145428989842888,
+        0.31982825156839134,
+        0.03145082631347188,
+        0.7204566332062545
+      ],
+      [
+        -0.4287349964489192,
+        0.7070435664380318,
+        -0.5572035172217764,
+        0.07615732646446738
+      ],
+      [
+        -0.2656505564800927,
+        0.49404186161527625,
+        0.8273577433972386,
+        -0.028837219945042847
+      ],
+      [
+        -0.6065913863299979,
+        -0.3920738752186974,
+        0.06335811203398431,
+        0.6887021969187658
+      ]
+    ],
+    "eigenvalues": [
+      1.4453569383380749,
+      1.0752144182941277,
+      0.969534812351745,
+      0.5138424983408308
+    ]
+  },
+  "11_optimization": {
+    "objective": "sum of squared residuals",
+    "intercept_slope": [
+      52.681515828675266,
+      1.076984715660309
+    ],
+    "minimum_sse": 76329.00091801336,
+    "converged": true,
+    "message": "Optimization terminated successfully."
+  },
+  "12_monte_carlo": {
+    "method": "uniform points in square [-1,1]^2",
+    "draws": 500000,
+    "pi_estimate": 3.1434,
+    "approx_se": 0.002320619072575247
+  },
+  "13_time_series": {
+    "n_months": 60,
+    "mean": 252.73196553718589,
+    "lag1_autocorrelation": 0.9485951709288971,
+    "linear_trend_slope_per_month": 1.6363656486320743,
+    "note": "Synthetic series; no real forecast claims."
+  },
+  "14_visualization": {
+    "chart": "scatter plot",
+    "scatter_observations": 1200,
+    "visual_encoding": "attendance vs score; color denotes generated pass status"
+  },
+  "15_transform_normalize": {
+    "raw_mean_sd": [
+      59.192775000000005,
+      9.551167828213906
+    ],
+    "zscore_mean_sd": [
+      -4.944193202997364e-16,
+      1.0
+    ],
+    "minmax_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "16_anova": {
+    "table": [
+      {
+        "index": "C(group)",
+        "sum_sq": 2679.5533883201856,
+        "df": 2.0,
+        "F": 15.017412455325903,
+        "PR(>F)": 3.6182709950387255e-07
+      },
+      {
+        "index": "Residual",
+        "sum_sq": 106790.21487092982,
+        "df": 1197.0,
+        "F": NaN,
+        "PR(>F)": NaN
+      }
+    ],
+    "tukey_summary": "Multiple Comparison of Means - Tukey HSD, FWER=0.05 \n====================================================\ngroup1 group2 meandiff p-adj   lower   upper  reject\n----------------------------------------------------\n     A      B   2.2698 0.0019  0.7121  3.8276   True\n     A      C  -1.3166 0.1266 -2.9049  0.2716  False\n     B      C  -3.5865    0.0 -5.1453 -2.0277   True\n----------------------------------------------------",
+    "group_means": {
+      "A": 58.82325641025641,
+      "B": 61.093087885985746,
+      "C": 57.50660668380463
+    }
+  },
+  "17_chi_square": {
+    "contingency_table": {
+      "0": {
+        "A": 71,
+        "B": 51,
+        "C": 75
+      },
+      "1": {
+        "A": 319,
+        "B": 370,
+        "C": 314
+      }
+    },
+    "expected": [
+      [
+        64.025,
+        325.975
+      ],
+      [
+        69.11416666666666,
+        351.8858333333333
+      ],
+      [
+        63.86083333333333,
+        325.13916666666665
+      ]
+    ],
+    "chi_square": 8.913752404717533,
+    "df": 2,
+    "p_value": 0.011598538242836541
+  },
+  "18_logistic_regression": {
+    "features": [
+      "study_hours",
+      "attendance_pct",
+      "age"
+    ],
+    "coefficients": {
+      "study_hours": 0.3119158723132094,
+      "attendance_pct": 0.03381506898795905,
+      "age": -0.019563571098823427
+    },
+    "intercept": -2.0908644992604213,
+    "accuracy": 0.8307086614173228,
+    "confusion_matrix_labels_0_1": [
+      [
+        0,
+        42
+      ],
+      [
+        1,
+        211
+      ]
+    ],
+    "test_n": 254
+  },
+  "19_nonparametric": {
+    "test": "Mann-Whitney U",
+    "U": 216487.5,
+    "p_value": 1.130944496210023e-09,
+    "workshop_median": 60.52,
+    "control_median": 57.31
+  },
+  "20_bootstrap": {
+    "resamples": 2000,
+    "bootstrap_mean": 59.18852390833334,
+    "bootstrap_se": 0.27609065603571814,
+    "percentile_95_interval": [
+      58.67224749999999,
+      59.733148541666665
+    ]
+  },
+  "21_multivariate": {
+    "covariance": {
+      "study_hours": {
+        "study_hours": 12.1687,
+        "attendance_pct": -2.0333,
+        "age": 0.426,
+        "score": 13.1055
+      },
+      "attendance_pct": {
+        "study_hours": -2.0333,
+        "attendance_pct": 154.8334,
+        "age": -0.7467,
+        "score": 28.0281
+      },
+      "age": {
+        "study_hours": 0.426,
+        "attendance_pct": -0.7467,
+        "age": 5.5363,
+        "score": -0.3021
+      },
+      "score": {
+        "study_hours": 13.1055,
+        "attendance_pct": 28.0281,
+        "age": -0.3021,
+        "score": 89.4639
+      }
+    },
+    "pca2_variance_ratio": [
+      0.3609828842545537,
+      0.26853851226132924
+    ],
+    "cluster_sizes": {
+      "0": 415,
+      "1": 217,
+      "2": 382
+    }
+  },
+  "22_missing_data": {
+    "missing_count": {
+      "study_hours": 96,
+      "attendance_pct": 96
+    },
+    "missing_fraction": {
+      "study_hours": 0.08,
+      "attendance_pct": 0.08
+    },
+    "method": "median imputation",
+    "imputed_medians": {
+      "study_hours": 5.405,
+      "attendance_pct": 78.1
+    },
+    "complete_case_n": 1014,
+    "imputed_n": 1200,
+    "caution": "Imputation is illustrative; assumptions and sensitivity should be assessed for real data."
+  },
+  "23_reproducibility": {
+    "random_seed": 4131,
+    "synthetic_rows": 1200,
+    "python": "Python 3; see requirements.txt for package list",
+    "data_file": "data/synthetic_student_outcomes.csv",
+    "output_files": [
+      "results/all_results.json",
+      "results/summary.csv",
+      "figures/*.png"
+    ],
+    "synthetic_data_only": true
+  }
+}
